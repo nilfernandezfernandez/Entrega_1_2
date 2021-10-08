@@ -9,19 +9,19 @@ int main()
 
 	XmlElement viejoRoble = {
 		//id_element = 
-			"node",
+            "node",
 
 		// atributs = 
 		{
-			std::make_pair("id", "357101444"),
+                std::make_pair("id", "357101444"),
 			std::make_pair("visible", "true"),
 			std::make_pair("version", "3"),
 			std::make_pair("changeset", "77532251"),
 			std::make_pair("timestamp", "2019-11-25T15:26:03Z"),
 			std::make_pair("user", "MultiDavid2001b"),
-			std::make_pair("uid", "4946691"),
-			std::make_pair("lat", "41.4902204"),
-			std::make_pair("lon", "2.1406477")
+			std::make_pair("uid", "4946691"), //id
+			std::make_pair("lat", "41.4902204"), //Latitud
+			std::make_pair("lon", "2.1406477") //Logitud
 		},
 
 		// fills = 
@@ -78,6 +78,7 @@ int main()
 	}
 
 
+    //TODO Tasca1
 	/*
 		Tasca 1:
 		Imprimir per pantalla l�identificador, latitud (lat), l�longitud (lon), 
@@ -88,11 +89,24 @@ int main()
 		Recordeu que en la soluci� de la pr�ctica haureu de recollir tots els punts d�inter�s, 
 		que per definici�, s�n nodes que no s�n nodes de cam� que tenen un atribut name.
 	*/
-
-	// TODO Tasca1 
+    std::cout<<"["<<viejoRoble.id_element<<"]"<<std::endl;
+    std::cout<<"-----------------------------------"<<std::endl;
+    for(int i = 0;i < viejoRoble.atributs.size();i++){
+        if(viejoRoble.atributs[i].first == "lat" || viejoRoble.atributs[i].first == "lon"){
+            std::cout<<viejoRoble.atributs[i].first<<": "<<stod(viejoRoble.atributs[i].second)<<std::endl;
+        }
+    }
+    for(int i = 0; i< viejoRoble.fills.size(); i++){
+       if(viejoRoble.fills[i].second[0].second == "name"){
+           for (int j = 1; j < viejoRoble.fills[i].second.size(); ++j) {
+                std::cout<<viejoRoble.fills[i].second[0].second<<": "<<viejoRoble.fills[i].second[j].second<<std::endl;
+           }
+       }
+    }
+    std::cout<<"-----------------------------------"<<std::endl<<std::endl;
 
 	XmlElement camiJoaquim = {
-		// id_element = 
+		// id_element =
 		"way",
 
 		// atributs = 
@@ -158,20 +172,35 @@ int main()
 	};
 
 
-
+    // TODO Tasca2
 	/*
 		Tasca 2: 
 		Imprimir per pantalla els identificadors dels nodes 
-		que formen el XmlElement camiJoaquim, aix� com el valor del atribut highway. 
-		
+		que formen el XmlElement camiJoaquim, aix� com el valor del atribut highway.
 		Recordeu que en la soluci� de la pr�ctica nom�s haureu de tenir en compte 
 		tots els camins que tenen el tag highway (independentment del valor que pugui tenir), 
 		aix� com saber quins nodes de tipus cam�, formen cada cam�.
 	*/
+    std::cout<<"["<<camiJoaquim.id_element<<"]"<<std::endl;
+    std::cout<<"-----------------------------------"<<std::endl;
+    for (int i = 0; i < camiJoaquim.fills.size(); ++i) {
+        if(camiJoaquim.fills[i].first == "nd"){
+            for (int j = 0; j < camiJoaquim.fills[i].second.size(); ++j) {
+                std::cout<<camiJoaquim.fills[i].first<<": "<<camiJoaquim.fills[i].second[j].second<<std::endl;
+            }
+        }else if(camiJoaquim.fills[i].first == "tag"){
+            for (int j = 0; j < camiJoaquim.fills[i].second.size(); ++j) {
+                int k = 1;
+                std::cout<<camiJoaquim.fills[i].second[j].second<<": "<<camiJoaquim.fills[i].second[k].second<<std::endl;
+                k++;
+            }
+        }
+    }
 
-	// TODO Tasca2 
+    std::cout<<"-----------------------------------"<<std::endl<<std::endl;
 
-	return 0;
+
+    return 0;
 
 }
 

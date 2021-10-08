@@ -6,7 +6,7 @@
 
 class Util {
 private:
-        static const std::string m_logFileName;
+    static const std::string m_logFileName;
 	static double m_PI;
 	static double m_RadiTerraX2;
 
