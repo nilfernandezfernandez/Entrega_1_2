@@ -96,16 +96,19 @@ int main()
             std::cout<<viejoRoble.atributs[i].first<<": "<<stod(viejoRoble.atributs[i].second)<<std::endl;
         }
     }
+    //BUSCAR EL NOMBRE
+    std::pair<std::string, std::string> temp;
     for(int i = 0; i< viejoRoble.fills.size(); i++){
-       if(viejoRoble.fills[i].second[0].second == "name"){
-           for (int j = 1; j < viejoRoble.fills[i].second.size(); ++j) {
-                std::cout<<viejoRoble.fills[i].second[0].second<<": "<<viejoRoble.fills[i].second[j].second<<std::endl;
-           }
-       }
+        if(viejoRoble.fills[i].first == "tag") {
+            temp = Util::kvDeTag(viejoRoble.fills[i].second);
+            if(temp.first == "name"){
+                std::cout << temp.first << ": "<<temp.second<<std::endl;
+            }
+        }
     }
     std::cout<<"-----------------------------------"<<std::endl<<std::endl;
 
-	XmlElement camiJoaquim = {
+    XmlElement camiJoaquim = {
 		// id_element =
 		"way",
 
@@ -189,14 +192,12 @@ int main()
                 std::cout<<camiJoaquim.fills[i].first<<": "<<camiJoaquim.fills[i].second[j].second<<std::endl;
             }
         }else if(camiJoaquim.fills[i].first == "tag"){
-            for (int j = 0; j < camiJoaquim.fills[i].second.size(); ++j) {
-                int k = 1;
-                std::cout<<camiJoaquim.fills[i].second[j].second<<": "<<camiJoaquim.fills[i].second[k].second<<std::endl;
-                k++;
+            temp = Util::kvDeTag(camiJoaquim.fills[i].second);
+            if(temp.first == "highway"){
+                std::cout<<temp.first<<": "<<temp.second<<std::endl;
             }
         }
     }
-
     std::cout<<"-----------------------------------"<<std::endl<<std::endl;
 
 
